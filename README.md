@@ -1,10 +1,28 @@
 ## 微信小程序--头条新闻
 #### 项目说明
-微信小程序: 实现一个头条新闻
+微信小程序: 实现一个新闻小程序
+### 布局
 
-数据来源: 所有数据来源于[聚合数据](https://www.juhe.cn/)
+|          标准           | 符合要求                                                     |
+| :---------------------: | :----------------------------------------------------------- |
+|         主界面          | 应用包含一个主界面，来展示不同分类下的新闻列表。小程序必须包含图标及题目。 |
+| 列表项内容 &nbsp;&nbsp; | 主界面的每个列表项都显示有关该新闻的标题，作者以及发布时间。如果可以获取的<br>话，图片也应包括在内。请注意，并非所有的响应都包含图片数据，但如果有此数据<br>，则需要将其包含在内。否则使用一张默认图片来代替。 |
+|        详情界面         | 详情界面应包含有关该新闻的标题，作者，发布时间，阅读数以及正文。如相关新闻<br>含有图片信息，则显示图片，如图片有图名及来源，则显示在图片下方。 |
+
+### 功能
+
+|          标准          | 符合要求                                                     |
+| :--------------------: | :----------------------------------------------------------- |
+| 执行请求与<br>获取数据 | 请求执行并且取得需要的数据。                                 |
+|          错误          | 代码运行没有错误。                                           |
+|      跳转到详情页      | 可以从主界面的列表项跳转到对应新闻的详情页。 &nbsp;&nbsp;&nbsp;&nbsp; |
+|      返回到主界面      | 可以从新闻详情页返回到主界面。                               |
+|        手势刷新        | 下拉手势激活刷新功能。                                       |
+
+
+数据来源: 所有数据来源于[Udacity-Tencent API](https://test-miniprogram.com)
 #### 项目效果
-![img](https://github.com/KuangPF/wxAPP_toutiaoNews/blob/master/img/demo1.png)
-![img](https://github.com/KuangPF/wxAPP_toutiaoNews/blob/master/img/demo2.png)
-![img](https://github.com/KuangPF/wxAPP_toutiaoNews/blob/master/img/demo3.png)
-![img](https://github.com/KuangPF/wxAPP_toutiaoNews/blob/master/img/demo4.png)
+![img](https://github.com/jxlxt/wxnews/blob/master/img/demo1.png)
+![img](https://github.com/jxlxt/wxnews/blob/master/img/demo2.png)
+![img](https://github.com/jxlxt/wxnews/blob/master/img/demo3.png)
+![img](https://github.com/jxlxt/wxnews/blob/master/img/demo4.png)
