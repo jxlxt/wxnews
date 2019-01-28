@@ -1,0 +1,20 @@
+<!--pages/detail/detail.wxml-->
+<view class='detail'>
+    <view class='header'>
+        <view class='article-title'>{{resultData.title}}</view>
+        <view style="display: flex;justify-content: space-between;">
+            <view class='news-source'>{{resultData.source == ''? '环球资讯':item.source}}</view>
+            <view class='news-readCount'>{{resultData.readCount}}</view>
+        </view>
+    </view>
+    <view>
+        <image src='{{resultData.firstImage}}' class="slide-image"  mode="aspectFill"></image>
+        <block wx:for='{{resultData.content}}'>
+            <view class='list-item'>
+                <view class='list-item-content'>
+                    <view class='contentTip'>{{item.text}}</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

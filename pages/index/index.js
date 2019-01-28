@@ -1,54 +1,75 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    headerTitleName: [{
+      name: '国内',
+      newsType: 'gn'
+    }, {
+      name: '国际',
+      newsType: 'gj'
+    }, {
+      name: '财经',
+      newsType: 'cj'
+    }, {
+      name: '娱乐',
+      newsType: 'yl'
+    }, {
+      name: '军事',
+      newsType: 'js'
+    }, {
+      name: '体育',
+      newsType: 'ty'
+    }, {
+      name: '其他',
+      newsType: 'other'
+    }],
+    tapID: 'gn', //判断是否选中
+    contentNewsList: {},
   },
-  //事件处理函数
-  bindViewTap: function() {
+
+  //headerBar 点击
+  headerTitleClick: function(e) {
+    let _this = this;
+    let newsType = e.currentTarget.dataset.newstype;
+    this.showData(newsType);
+  },
+
+  //跳转到新闻详情页
+
+  viewDetail: function(e) {
+    var id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../detail/detail?id=' + id,
     })
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+
+  onLoad: function() {
+    this.showData('gn');
+  },
+  showData: function(newsType) {
+    var _this = this;
+    wx.request({
+      url: 'https://test-miniprogram.com/api/news/list?type=' + newsType,
+      method: 'GET',
+      success: res => {
+        let resultData = res.data.result;
+        for (var i = 0; resultData.length > i; i++) {
+          var d = new Date(resultData[i].date);
+          resultData[i].date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          resultData[i].firstImage == "" ? "../../img/loading.png":resultData[i].firstImage; 
+        }
+        _this.setData({
+          contentNewsList: resultData,
+          tapID: newsType
         })
       }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
     })
+  },
+  //页面下拉处理
+  onPullDownRefresh:function () {
+    this.showData(this.data.tapID);
   }
 })

@@ -1,23 +1,17 @@
 {
-	"description": "Project configuration file",
-	"packOptions": {
-		"ignore": []
-	},
+	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.2",
+	"libVersion": "1.9.1",
 	"appid": "wx0895c2b6e5aea83c",
-	"projectname": "wxapp-news",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
+	"projectname": "toutiaonews",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -25,10 +19,6 @@
 		},
 		"conversation": {
 			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {

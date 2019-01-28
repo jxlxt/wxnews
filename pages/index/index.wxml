@@ -1,13 +1,37 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view class='index'>
+    <view class='header'>
+        <view class='headerPanel'>
+            <block wx:for='{{headerTitleName}}' wx:key='{{item.nameID}}'>
+                <view data-id='{{item.nameID}}' data-url='{{item.nameUrl}}' data-newstype='{{item.newsType}}' class="headerTitle {{item.newsType == tapID? 'headerTitleActive':''}}" bindtap='headerTitleClick'>{{item.name}}</view>
+            </block>
+        </view>
+    </view>
+    <view class='content'>
+        <view class='content-top-pic'>
+            <swiper class="swiper" indicator-dots="true" autoplay="true" interval="50000" duration="1000">
+                <block wx:for="{{contentNewsList}}" wx:key='{{item.id}}'>
+                    <swiper-item>
+                        <image src="{{item.firstImage}}" class="slide-image" mode="aspectFill" />
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <view class='content-list'>
+            <block wx:for='{{contentNewsList}}' wx:key='{{item.id}}'>
+                <view class='list-item' bindtap='viewDetail' data-id='{{item.id}}'>
+                    <view class='list-item-content'>
+                        <view class='list-item-left'>
+                            <image src='{{item.firstImage}}'></image>
+                        </view>
+                        <view class='list-item-right'>
+                            <view class='article-title'>{{item.title}}</view>
+                            <view class='article-source'>{{item.source == ''? '环球资讯':item.source}}</view>
+                            <view class='article-editTime'>{{item.date}}</view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
 </view>
